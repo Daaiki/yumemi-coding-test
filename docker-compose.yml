@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  node:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: yumemi-coding-test
+    ports:
+      - "3000:3000"
+      - "6006:6006"
+    volumes:
+      - ./app:/home/app
+      - node_modules_volume:/home/app/node_modules:delegated
+      - build_volume:/home/app/.next:nocopy
+
+volumes:
+  node_modules_volume:
+  build_volume:

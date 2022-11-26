@@ -1,0 +1,40 @@
+{
+  "name": "app",
+  "packageManager": "yarn@3.2.3",
+  "scripts": {
+    "dev": "dev:next && dev:scss",
+    "dev:next": "next dev",
+    "dev:scss": "typed-scss-modules src --watch",
+    "build:next": "next build && next export",
+    "lint": "next lint -d ./ --ignore-path .gitignore",
+    "lint:fix": "next lint -d ./ --fix --ignore-path .gitignore",
+    "lint:warnings": "next lint -d ./ --fix --ignore-path .gitignore --max-warnings=0",
+    "check:type": "tsc --pretty --noEmit",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "check:format": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "export": "next export",
+    "typegen:scss": "typed-scss-modules src"
+  },
+  "dependencies": {
+    "highcharts": "^10.3.1",
+    "next": "^13.0.4",
+    "normalize.css": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.56.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "eslint": "^8.28.0",
+    "eslint-config-next": "^13.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "msw": "^0.49.0",
+    "prettier": "^2.7.1",
+    "typed-scss-modules": "^7.0.1",
+    "typescript": "^4.9.3"
+  }
+}
