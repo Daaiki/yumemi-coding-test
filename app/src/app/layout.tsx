@@ -1,5 +1,9 @@
+'use client'
+
 import 'normalize.css'
 import '@/styles/global.scss'
+import { Provider } from 'react-redux'
+import { store } from '@/rtk/store'
 
 export default function RootLayout({
   children
@@ -9,7 +13,9 @@ export default function RootLayout({
   return (
     <html lang={'ja'}>
       <head />
-      <body>{children}</body>
+      <body>
+        <Provider store={store}>{children}</Provider>
+      </body>
     </html>
   )
 }
