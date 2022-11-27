@@ -2,7 +2,7 @@
   "name": "app",
   "packageManager": "yarn@3.2.3",
   "scripts": {
-    "dev": "dev:next && dev:scss",
+    "dev": "yarn dev:next && yarn dev:scss",
     "dev:next": "next dev",
     "dev:scss": "typed-scss-modules src --watch",
     "build:next": "next build && next export",
@@ -16,11 +16,13 @@
     "typegen:scss": "typed-scss-modules src"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.0",
     "highcharts": "^10.3.1",
     "next": "^13.0.4",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "sass": "^1.56.1"
   },
   "devDependencies": {
