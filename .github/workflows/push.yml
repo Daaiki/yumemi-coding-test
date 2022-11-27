@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+    paths:
+      - app/**
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.12.0'
+      - name: ci
+        working-directory: ./app
+        run: |
+          yarn install --frozen-lockfile
+          yarn check:type
+          yarn lint
+          yarn lint:warnings
+          yarn check:format
