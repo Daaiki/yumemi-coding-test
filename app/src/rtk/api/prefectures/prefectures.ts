@@ -1,16 +1,18 @@
 import { baseApi } from '@/rtk/api/baseApi'
 
-export type PrefecturesType = {
+export type PrefsType = {
   message: null
-  result: {
-    prefCode: number
-    prefName: string
-  }[]
+  result: PrefType[]
+}
+
+export type PrefType = {
+  prefCode: number
+  prefName: string
 }
 
 const prefecturesApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getPrefectures: builder.query<PrefecturesType, void>({
+    getPrefectures: builder.query<PrefsType, void>({
       query: () => ({
         url: `/api/v1/prefectures`
       })
