@@ -4,31 +4,52 @@ export type PopulationType = {
   message: null
   result: {
     boundaryYear: number
-    data: {
-      label: string
-      data: {
-        year: number
-        value: number
-        rate?: number
-      }[]
-    }[]
+    data: PopulationDataType[]
+  }
+}
+
+type PopulationDataType = {
+  label: '総人口' | '年少人口' | '生産年齢人口' | '老年人口'
+  data: {
+    year: number
+    value: number
+    rate?: number
   }[]
 }
 
 type PopulationParamsType = {
   prefCode: number
-  cityCode?: number
+  cityCode?: number | '-'
+  addArea?: string
 }
 
 const populationsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getPopulation: builder.query<PopulationType, PopulationParamsType>({
-      query: ({ prefCode, cityCode = '-' }) => ({
-        url: `/api/v1/population/composition/perYear?cityCode=${cityCode}&prefCode=${prefCode}`
-      })
+    getPopulations: builder.query<
+      { [key: string]: PopulationType },
+      PopulationParamsType[]
+    >({
+      queryFn: async (arg, _queryApi, _extraOptions, baseQuery) => {
+        const results = await Promise.all(
+          arg.map(async ({ cityCode = '-', prefCode }) => {
+            const { data } = await baseQuery(
+              `/population/composition/perYear?cityCode=${cityCode}&prefCode=${prefCode}`
+            )
+            return { [prefCode]: data }
+          })
+        )
+
+        // データ整形
+        const populations = {}
+        results.map((result) => {
+          Object.assign(populations, result)
+        })
+
+        return { data: populations }
+      }
     })
   }),
   overrideExisting: false
 })
 
-export const { useGetPopulationQuery } = populationsApi
+export const { useGetPopulationsQuery } = populationsApi

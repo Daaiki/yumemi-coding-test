@@ -1,13 +1,16 @@
 'use client'
 
 import { CheckBox } from '@/components/CheckBox'
-import { useGetPrefecturesQuery } from '@/rtk/api'
+import { useCheckPrefs } from '@/hooks/useCheckPrefs'
+import { useGetPopulationsQuery, useGetPrefecturesQuery } from '@/rtk/api'
 
 export default function Home() {
   const { data: prefecturesData, isLoading: isPrefecturesLoading } =
     useGetPrefecturesQuery()
+  const { prefs, checkPrefsHandler } = useCheckPrefs()
+  const { isLoading: isPopulationsLoading } = useGetPopulationsQuery(prefs)
 
-  const isLoading = isPrefecturesLoading
+  const isLoading = isPrefecturesLoading || isPopulationsLoading
   return (
     <>
       {isLoading || !prefecturesData ? (
@@ -19,6 +22,7 @@ export default function Home() {
               key={data.prefCode}
               name={data.prefName}
               value={data.prefCode}
+              onChange={checkPrefsHandler}
             />
           ))}
         </>

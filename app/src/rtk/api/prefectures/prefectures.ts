@@ -14,7 +14,7 @@ const prefecturesApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getPrefectures: builder.query<PrefsType, void>({
       query: () => ({
-        url: `/api/v1/prefectures`
+        url: `/prefectures`
       })
     })
   }),
