@@ -24,3 +24,4 @@ jobs:
           yarn lint
           yarn lint:warnings
           yarn check:format
+          yarn test
