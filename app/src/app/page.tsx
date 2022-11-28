@@ -8,8 +8,7 @@ export default function Home() {
   const { data: prefecturesData, isLoading: isPrefecturesLoading } =
     useGetPrefecturesQuery()
   const { prefs, checkPrefsHandler } = useCheckPrefs()
-  const { isLoading: isPopulationsLoading } =
-    useGetPopulationsQuery(prefs)
+  const { isLoading: isPopulationsLoading } = useGetPopulationsQuery(prefs)
 
   const isLoading = isPrefecturesLoading || isPopulationsLoading
   return (
