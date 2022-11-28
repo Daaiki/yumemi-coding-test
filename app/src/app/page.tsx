@@ -2,17 +2,16 @@
 
 import { CheckBox } from '@/components/CheckBox'
 import { useCheckPrefs } from '@/hooks/useCheckPrefs'
-import { useGetPrefecturesQuery } from '@/rtk/api'
+import { useGetPopulationsQuery, useGetPrefecturesQuery } from '@/rtk/api'
 
 export default function Home() {
   const { data: prefecturesData, isLoading: isPrefecturesLoading } =
     useGetPrefecturesQuery()
   const { prefs, checkPrefsHandler } = useCheckPrefs()
+  const { data: populationsData, isLoading: isPopulationsLoading } =
+    useGetPopulationsQuery(prefs)
 
-  // Todo: 流し込むときにprefsを使う
-  console.log(prefs)
-
-  const isLoading = isPrefecturesLoading
+  const isLoading = isPrefecturesLoading || isPopulationsLoading
   return (
     <>
       {isLoading || !prefecturesData ? (
