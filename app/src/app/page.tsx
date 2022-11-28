@@ -1,6 +1,7 @@
 'use client'
 
 import { CheckBox } from '@/components/CheckBox'
+import { LineGraph } from '@/components/LineGraph'
 import { useCheckPrefs } from '@/hooks/useCheckPrefs'
 import { useGetPopulationsQuery, useGetPrefecturesQuery } from '@/rtk/api'
 
@@ -8,12 +9,13 @@ export default function Home() {
   const { data: prefecturesData, isLoading: isPrefecturesLoading } =
     useGetPrefecturesQuery()
   const { prefs, checkPrefsHandler } = useCheckPrefs()
-  const { isLoading: isPopulationsLoading } = useGetPopulationsQuery(prefs)
+  const { data: populationsData, isLoading: isPopulationsLoading } =
+    useGetPopulationsQuery(prefs)
 
   const isLoading = isPrefecturesLoading || isPopulationsLoading
   return (
     <>
-      {isLoading || !prefecturesData ? (
+      {isLoading || !prefecturesData || !populationsData ? (
         <>{'loading'}</>
       ) : (
         <>
@@ -25,6 +27,10 @@ export default function Home() {
               onChange={checkPrefsHandler}
             />
           ))}
+          <LineGraph
+            prefecturesData={prefecturesData}
+            populationsData={populationsData}
+          />
         </>
       )}
     </>
