@@ -1,5 +1,12 @@
 module.exports = {
-  extends: ['next/core-web-vitals', 'eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:jsx-a11y/recommended', 'prettier', 'plugin:storybook/recommended'],
+  extends: [
+    'next/core-web-vitals',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:jsx-a11y/recommended',
+    'prettier',
+    'plugin:storybook/recommended'
+  ],
   env: {
     browser: true,
     es6: true,
@@ -14,4 +21,4 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'off',
     '@typescript-eslint/no-var-requires': 0
   }
-};
+}
