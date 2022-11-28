@@ -4,7 +4,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:jsx-a11y/recommended',
-    'prettier'
+    'prettier',
+    'plugin:storybook/recommended'
   ],
   env: {
     browser: true,
