@@ -2,13 +2,14 @@ import { baseApi } from '@/rtk/api/baseApi'
 
 export type PopulationType = {
   message: null
+  prefCode: number
   result: {
     boundaryYear: number
     data: PopulationDataType[]
   }
 }
 
-type PopulationDataType = {
+export type PopulationDataType = {
   label: '総人口' | '年少人口' | '生産年齢人口' | '老年人口'
   data: {
     year: number
@@ -17,7 +18,7 @@ type PopulationDataType = {
   }[]
 }
 
-type PopulationParamsType = {
+export type PopulationParamsType = {
   prefCode: number
   cityCode?: number | '-'
   addArea?: string
@@ -25,27 +26,24 @@ type PopulationParamsType = {
 
 const populationsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getPopulations: builder.query<
-      { [key: string]: PopulationType },
-      PopulationParamsType[]
-    >({
+    getPopulations: builder.query<PopulationType[], PopulationParamsType[]>({
+      // TODO: 型どうにかする
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       queryFn: async (arg, _queryApi, _extraOptions, baseQuery) => {
         const results = await Promise.all(
           arg.map(async ({ cityCode = '-', prefCode }) => {
             const { data } = await baseQuery(
               `/population/composition/perYear?cityCode=${cityCode}&prefCode=${prefCode}`
             )
-            return { [prefCode]: data }
+            return {
+              prefCode,
+              ...(data as PopulationType[])
+            }
           })
         )
 
-        // データ整形
-        const populations = {}
-        results.map((result) => {
-          Object.assign(populations, result)
-        })
-
-        return { data: populations }
+        return { data: results }
       }
     })
   }),
