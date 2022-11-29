@@ -13,6 +13,18 @@ services:
       - ./app:/home/app
       - node_modules_volume:/home/app/node_modules:delegated
       - build_volume:/home/app/.next:nocopy
+  json-server:
+    build: 
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: yumemi-coding-test-json-server
+    ports:
+      - 4000:4000
+    volumes:
+      - ./app:/home/app
+      - node_modules_volume:/home/app/node_modules:delegated
+      - build_volume:/home/app/.next:nocopy
+    command: yarn json-server
 
 volumes:
   node_modules_volume:

@@ -1,0 +1,3 @@
+{
+  "/population/composition/perYear?cityCode=-&prefCode=:prefCode": "/pop_:prefCode"
+}
