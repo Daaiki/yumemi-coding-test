@@ -1,8 +1,6 @@
-@use '../../mixin';
-
 .graphContainer {
-  @include mixin.mq(xl) {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
+  margin-top: 30px;
+  background-color: var(--c-white);
+  border-radius: 3rem;
+  padding: 24px;
 }
