@@ -9,6 +9,41 @@ on:
 
 jobs:
   deploy:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.12.0'
+
+      - name: 'Build and Deploy'
+        working-directory: ./app
+        run: |
+          yarn install --frozen-lockfile
+          yarn build:next
+          yarn build:storybook
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./app/build/
+
+
+# https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-react-and-next
+
+name: github pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -33,6 +68,8 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      
+      - name: 'Build'
         working-directory: ./app
         run: |
           yarn install --frozen-lockfile
@@ -44,4 +81,4 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./app/build/
+          publish_dir: ./out

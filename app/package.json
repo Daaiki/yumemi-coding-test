@@ -6,6 +6,7 @@
     "dev:next": "next dev",
     "dev:scss": "typed-scss-modules src --watch",
     "build:next": "next build && next export",
+    "build:storybook": "build-storybook -s ./public -o ./build/storybook/",
     "lint": "next lint -d ./ --ignore-path .gitignore",
     "lint:fix": "next lint -d ./ --fix --ignore-path .gitignore",
     "lint:warnings": "next lint -d ./ --fix --ignore-path .gitignore --max-warnings=0",
@@ -15,7 +16,6 @@
     "export": "next export",
     "typegen:scss": "typed-scss-modules src",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -s ./public -o ./build/storybook/",
     "test": "jest",
     "json-server": "json-server --watch ./src/mocks/db.json --routes ./src/mocks/routes.json --port 4000 --host 0.0.0.0"
   },
