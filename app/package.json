@@ -65,5 +65,8 @@
   "resolutions": {
     "enhanced-resolve": "5.10.0",
     "react-test-renderer": "18.2.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

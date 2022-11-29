@@ -5,6 +5,11 @@ import '@/styles/global.scss'
 import { Provider } from 'react-redux'
 import { store } from '@/rtk/store'
 
+if (process.env.NODE_ENV === 'development') {
+  const MockServer = () => import('@/mocks/worker')
+  MockServer()
+}
+
 export default function RootLayout({
   children
 }: {
