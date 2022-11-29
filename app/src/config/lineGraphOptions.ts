@@ -24,6 +24,19 @@ export const options: Options = {
       }
     }
   },
+  tooltip: {
+    useHTML: true,
+    formatter() {
+      const value = (Number(this.y) / 10000).toFixed(1)
+      return `
+        <div>
+          <div>${this.x}年</div>
+          <div>${this.series.name}</div>
+          <div style="font-size: 2rem; display: inline-block;">${value}</div>万人
+        </div>
+      `
+    }
+  },
   legend: {
     layout: 'vertical',
     align: 'right',

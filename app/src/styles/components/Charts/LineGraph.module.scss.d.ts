@@ -1,5 +1,5 @@
 export type Styles = {
-  a: string
+  graphContainer: string
 }
 
 export type ClassNames = keyof Styles

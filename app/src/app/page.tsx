@@ -1,9 +1,12 @@
 'use client'
 
-import { CheckBox } from '@/components/CheckBox'
-import { LineGraph } from '@/components/LineGraph'
+import { CheckBoxList } from '@/components/CheckBoxes'
+import { Container } from '@/components/Containers'
+import { LineGraph } from '@/components/Charts'
 import { useCheckPrefs } from '@/hooks/useCheckPrefs'
 import { useGetPopulationsQuery, useGetPrefecturesQuery } from '@/rtk/api'
+import { Header } from '@/components/Headers'
+import { LoadingPage } from '@/components/Loadings'
 
 export default function Home() {
   const { data: prefecturesData, isLoading: isPrefecturesLoading } =
@@ -16,22 +19,18 @@ export default function Home() {
   return (
     <>
       {isLoading || !prefecturesData || !populationsData ? (
-        <>{'loading'}</>
+        <LoadingPage />
       ) : (
-        <>
-          {prefecturesData.result.map((data) => (
-            <CheckBox
-              key={data.prefCode}
-              name={data.prefName}
-              value={data.prefCode}
-              onChange={checkPrefsHandler}
+        <div>
+          <Header />
+          <Container>
+            <CheckBoxList data={prefecturesData} onChange={checkPrefsHandler} />
+            <LineGraph
+              prefecturesData={prefecturesData}
+              populationsData={populationsData}
             />
-          ))}
-          <LineGraph
-            prefecturesData={prefecturesData}
-            populationsData={populationsData}
-          />
-        </>
+          </Container>
+        </div>
       )}
     </>
   )

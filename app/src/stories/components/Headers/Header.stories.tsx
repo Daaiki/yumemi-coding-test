@@ -1,8 +1,8 @@
-import { Button } from '@/components/Button'
 import { StoryObj, ComponentMeta } from '@storybook/react'
+import { Header } from '@/components/Headers'
 
 export default {
-  component: Button
-} as ComponentMeta<typeof Button>
+  component: Header
+} as ComponentMeta<typeof Header>
 
 export const Default: StoryObj = {}

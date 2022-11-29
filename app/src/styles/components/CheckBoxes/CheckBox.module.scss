@@ -1,0 +1,14 @@
+.container {
+  align-items: center;
+  padding-left: 4px;
+  border-radius: 4px;
+  height: 28px;
+  :hover {
+    background-color: var(--c-hover);
+  }
+}
+
+.label {
+  padding-left: 3px;
+  vertical-align: text-top;
+}

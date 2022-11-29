@@ -1,7 +1,19 @@
+:root {
+  --c-white: #fff;
+  --c-bg-gray: #eee;
+  --c-text-gray: #444;
+  --c-hover: #ffcccc;
+  --c-primary: #f15186;
+}
+
 html {
   font-size: 62.5%;
 }
 body {
   font-size: 1.6rem;
+  color: var(--c-text-gray);
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  background-color: var(--c-bg-gray);
+  padding-top: 20px;
+  padding-bottom: 30px;
 }
