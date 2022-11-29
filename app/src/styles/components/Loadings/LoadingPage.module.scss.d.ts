@@ -1,5 +1,7 @@
 export type Styles = {
-  a: string
+  container: string
+  loading: string
+  spin: string
 }
 
 export type ClassNames = keyof Styles
