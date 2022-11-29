@@ -7,7 +7,6 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  distDir: 'build',
   sassOptions: {
     includePaths: [path.join(__dirname, './src/styles')],
   },
