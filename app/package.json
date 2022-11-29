@@ -5,7 +5,7 @@
     "dev": "yarn dev:next",
     "dev:next": "next dev",
     "dev:scss": "typed-scss-modules src --watch",
-    "build:next": "yarn typegen:scss && rm -rf **/*.module.scss.d.ts && next build && next export",
+    "build:next": "next build && next export",
     "build:storybook": "build-storybook -o ./build/storybook/",
     "lint": "next lint -d ./ --ignore-path .gitignore",
     "lint:fix": "next lint -d ./ --fix --ignore-path .gitignore",
