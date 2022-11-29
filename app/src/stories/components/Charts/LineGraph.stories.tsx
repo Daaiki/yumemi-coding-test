@@ -1,3 +1,5 @@
+import Highcharts from 'highcharts'
+import HighchartsReact from 'highcharts-react-official'
 import { StoryObj, ComponentMeta } from '@storybook/react'
 import { LineGraph } from '@/components/Charts'
 import db from '@/mocks/db.json'
@@ -11,6 +13,13 @@ export default {
     populationsData: {
       description: '都道府県に対応する、年単位の人口推移データ'
     }
+  },
+  render: (args) => {
+    if (process.env.NODE_ENV === 'test') {
+      return <HighchartsReact highcharts={Highcharts} />
+    }
+
+    return <LineGraph {...args} />
   }
 } as ComponentMeta<typeof LineGraph>
 
