@@ -6,7 +6,7 @@
     "dev:next": "next dev",
     "dev:scss": "typed-scss-modules src --watch",
     "build:next": "next build && next export",
-    "build:storybook": "build-storybook -s ./public -o ./build/storybook/",
+    "build:storybook": "build-storybook -o ./build/storybook/",
     "lint": "next lint -d ./ --ignore-path .gitignore",
     "lint:fix": "next lint -d ./ --fix --ignore-path .gitignore",
     "lint:warnings": "next lint -d ./ --fix --ignore-path .gitignore --max-warnings=0",
