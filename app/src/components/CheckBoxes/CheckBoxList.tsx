@@ -1,5 +1,6 @@
 import { PrefsType } from '@/rtk/api'
 import { CheckBox } from '@/components/CheckBoxes'
+import styles from '@/styles/components/CheckBoxes/CheckBoxList.module.scss'
 
 type CheckBoxListProps = {
   data: PrefsType
@@ -8,7 +9,7 @@ type CheckBoxListProps = {
 
 export const CheckBoxList = ({ data, onChange }: CheckBoxListProps) => {
   return (
-    <div>
+    <div className={styles.list}>
       {data.result.map((pref) => (
         <CheckBox
           key={pref.prefCode}

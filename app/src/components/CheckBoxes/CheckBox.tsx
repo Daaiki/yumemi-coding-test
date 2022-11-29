@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from '@/styles/components/CheckBoxes/CheckBox.module.scss'
 
 type CheckBoxProps = {
   name: string
@@ -8,7 +9,7 @@ type CheckBoxProps = {
 
 export const CheckBox = ({ name, value, onChange }: CheckBoxProps) => {
   return (
-    <div>
+    <div className={styles.container}>
       <input
         type={'checkbox'}
         id={name}
@@ -16,7 +17,9 @@ export const CheckBox = ({ name, value, onChange }: CheckBoxProps) => {
         name={name}
         onChange={(e) => onChange(e)}
       />
-      <label htmlFor={name}>{name}</label>
+      <label className={styles.label} htmlFor={name}>
+        {name}
+      </label>
     </div>
   )
 }
