@@ -18,7 +18,7 @@ export default function Home() {
   const isLoading = isPrefecturesLoading || isPopulationsLoading
   return (
     <>
-      {!isLoading || !prefecturesData || !populationsData ? (
+      {isLoading || !prefecturesData || !populationsData ? (
         <LoadingPage />
       ) : (
         <div>

@@ -1,7 +1,7 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import { PopulationType, PrefsType } from '@/rtk/api'
-import { options } from '@/utils/lineGraphOptions'
+import { options } from '@/config/lineGraphOptions'
 import { formatPopulationsData } from '@/utils/formatPopulationsData'
 import styles from '@/styles/components/Charts/LineGraph.module.scss'
 
