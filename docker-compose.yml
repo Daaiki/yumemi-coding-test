@@ -12,7 +12,7 @@ services:
     volumes:
       - ./app:/home/app
       - node_modules_volume:/home/app/node_modules:delegated
-      - build_volume:/home/app/.next:nocopy
+      - build_volume:/home/app/build:nocopy
   json-server:
     build: 
       context: ./app
@@ -23,7 +23,7 @@ services:
     volumes:
       - ./app:/home/app
       - node_modules_volume:/home/app/node_modules:delegated
-      - build_volume:/home/app/.next:nocopy
+      - build_volume:/home/app/build:nocopy
     command: yarn json-server
 
 volumes:
