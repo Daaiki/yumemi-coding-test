@@ -1,6 +1,6 @@
 'use client'
 
-import { CheckBox } from '@/components/CheckBox'
+import { CheckBox, CheckBoxList } from '@/components/CheckBoxes'
 import { Container } from '@/components/Containers'
 import { LineGraph } from '@/components/Charts'
 import { useCheckPrefs } from '@/hooks/useCheckPrefs'
@@ -23,14 +23,7 @@ export default function Home() {
         <div>
           <Header />
           <Container>
-            {prefecturesData.result.map((data) => (
-              <CheckBox
-                key={data.prefCode}
-                name={data.prefName}
-                value={data.prefCode}
-                onChange={checkPrefsHandler}
-              />
-            ))}
+            <CheckBoxList data={prefecturesData} onChange={checkPrefsHandler} />
             <LineGraph
               prefecturesData={prefecturesData}
               populationsData={populationsData}
